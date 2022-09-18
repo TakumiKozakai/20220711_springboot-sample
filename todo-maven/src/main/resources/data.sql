@@ -1,0 +1,1 @@
+insert into todo values('1', 'Study Java.', false, '2022-01-01 00:00:00');

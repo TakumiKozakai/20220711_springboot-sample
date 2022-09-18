@@ -1,0 +1,30 @@
+# H2DB
+spring:
+  datasource:
+    url: jdbc:h2:mem:todo;DB_CLOSE_DELAY=1;DB_CLOSE_ON_EXIT=FALSE
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+  sql:
+    init:
+      mode: always
+      encoding: UTF-8
+      schema-locations: classpath:schema.sql
+      data-locations: classpath:data.sql
+
+  h2:
+    console:
+      enabled: true
+
+# MyBatis
+mybatis:
+  mapper-locations: classpath*:/mapper/h2/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+  type-aliases-package: com.example.todo.domain.model
+
+# Log Level
+logging:
+  level:
+    com:
+      example: debug

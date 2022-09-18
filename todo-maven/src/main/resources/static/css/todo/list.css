@@ -1,0 +1,80 @@
+body {
+	background-color: #ebebeb;
+	color: #003d4d;
+	font-family: Segoe UI;
+}
+
+main {
+	width: 500px;
+	margin: auto;
+}
+
+.title {
+	padding: 0 20px;
+	background-color: #003d4d;
+	color: #ffffff;
+	border-radius: 3px;
+}
+
+.create-form {
+	padding: 0 20px;
+}
+
+.create-form td {
+	background-color: #ebebeb;
+}
+
+.content {
+	width: 400px;
+	height: 25px;
+	border-bottom: 1px solid #ebebeb;
+	border-right: none;
+	border-left: none;
+	border-top: none;
+	border-radius: 3px;
+}
+
+button {
+	background-color: #003d4d;
+	color: #ffffff;
+	border: none;
+	border-radius: 3px;
+}
+
+.errorMsg {
+	color: #800000;
+}
+
+.button-delete {
+	background-color: #436f8f;
+}
+
+.todo-list, .finished-todo-list {
+	height: 30%;
+	margin: 20px 0;
+}
+
+.todo-list-title, .finished-todo-list-title {
+	padding: 0 20px;
+	background-color: #003d4d;
+	color: #ffffff;
+	border-radius: 3px;
+}
+
+table {
+	width: 100%;
+	background-color: #ffffff;
+	border-collapse: collapse;
+}
+
+td {
+	width: 50px;
+	text-align: center;
+}
+
+td.todo {
+	width: 500px;
+	padding: 0 0 0 20px;
+	border-bottom: solid 1px #ebebeb;
+	text-align: left;
+}

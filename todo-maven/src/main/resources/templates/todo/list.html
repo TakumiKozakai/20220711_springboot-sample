@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+<link rel="stylesheet" th:href="@{/css/todo/list.css}">
+<title>Todo リスト</title>
+</head>
+
+<body>
+	<main>
+		<div class="title">
+			<h1>Todo</h1>
+		</div>
+
+		<div class="create-form">
+			<form th:action="@{/todo/create}" method="post" th:object="${todoForm}">
+				<table>
+					<tr>
+						<td><input type="text" class="content" th:field="*{todoTitle}" /></td>
+						<td><button type="submit" name="create" class="button-create">作成</button></td>
+					</tr>
+				</table>
+				<div class="errorMsg" th:errors="*{todoTitle}"></div>
+			</form>
+		</div>
+
+		<div class="todo-list">
+			<div class="todo-list-title">未完了</div>
+			<table>
+				<!-- 未完了のタスクのみを表示する -->
+				<th:block th:each="todo: ${todos}" th:if="!${todo.finished}">
+					<tr>
+						<td th:text="${todo.todoTitle}" class="todo"></td>
+						<td>
+							<form th:action=" @{/todo/finish}" method="post" th:object="${todoForm}">
+								<input type="hidden" name="todoId" th:value="${todo.todoId}" />
+								<button type="submit" name="finish" class="button-finish">完了</button>
+							</form>
+						</td>
+						<td>
+							<form th:action=" @{/todo/delete}" method="post" th:object="${todoForm}">
+								<input type="hidden" name="todoId" th:value="${todo.todoId}" />
+								<button type="submit" name="delete" class="button-delete">削除</button>
+							</form>
+						</td>
+					</tr>
+				</th:block>
+			</table>
+		</div>
+
+		<div class="finished-todo-list">
+			<div id="finished-todo-list-title" class="finished-todo-list-title" onclick="openClose()">完了▼</div>
+			<table id="finished-todo-list">
+				<!-- 完了したタスクのみを表示する -->
+				<th:block th:each="todo: ${todos}" th:if="${todo.finished}">
+					<tr>
+						<td th:text="${todo.todoTitle}" class="todo"></td>
+						<td></td>
+						<td>
+							<form th:action=" @{/todo/delete}" method="post" th:object="${todoForm}">
+								<input type="hidden" name="todoId" th:value="${todo.todoId}" />
+								<button type="submit" name="delete" class="button-delete">削除</button>
+							</form>
+						</td>
+					</tr>
+				</th:block>
+			</table>
+		</div>
+
+	</main>
+</body>
+
+<script>
+	// 初期表示時は非表示にする
+	document.getElementById("finished-todo-list").style.display = "block";
+
+	function openClose() {
+		const finishedTodoList = document.getElementById("finished-todo-list");
+
+		if (finishedTodoList.style.display == "none") {
+			// 表示
+			finishedTodoList.style.display = "block";
+			document.getElementById('finished-todo-list-title').textContent = '完了▲';
+
+		} else {
+			// 非表示
+			finishedTodoList.style.display = "none";
+			document.getElementById('finished-todo-list-title').textContent = '完了▼';
+		}
+	}
+</script>
+
+</html>
